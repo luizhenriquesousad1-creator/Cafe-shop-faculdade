@@ -63,7 +63,7 @@
 
   5.1 - FUNÇÃO cadastrar_produtos()
 
-  A função cadastra_produto() é responsável por coletar os dados de um novo produto e organizar essas informações em um
+  A função cadastra_produto() é responsável por coletar os dados de um novo produto e organizar essas informações em   um
   dicionário que posteriormente será armazenado em uma lista de produtos.
 
   ASSINATURA:
@@ -73,10 +73,57 @@
   a função recebe como parâmetro a lista de produtos que contém os produtos já cadastrados, essa lista é usada para 
   determinar o identificador do novo produto.
 
-  RESUMO DO FLUXO
+  ETAPAS DE EXECUÇÃO
 
-  recebe lista de produtos > Gera ID > Cria dicionário > recebe nome > recebe preço > recebe estoque > retorna produto.
+  1. Exibição do título da operação:
+     
+     A função inicia apresentando uma mensagem informando que o usuário está realizando o cadastro de um produto.
+     print("Cadastro de Produto")
+     Essa mensagem tem a finalidade de orientar o usuário durante a execução do sistema.
+     
+  2. Criação do dicionário do produto:
 
+     Um dicionário vazio é criado para armazenar os dados referentes ao novo produto.
+     produto ={}
+     A partir desse momento, as informações coletadas serão adicionadas ao dicionário utilizando chaves específicas.
+     
+  3. Geração do identificador:
+
+     O sistema calcula o identificador para o novo produto por meio da expreção:
+     
+     novo_id = len(produtos) + 1
+
+     A quantidade de elementos existentes na lista obtida por meio da da função len(). em seguida, é acrescentado 1       para gerar o identificador do novo produto.
+     
+  4. Armamento do ID:
+
+     O identificador calculado é armazenado no dicionário do produto:
+
+     produto["ID"] = novo_id
+
+     Esse valor será utilizado posteriormente para identificar o produto nas operações de busca, edição e remoção.
+     
+  5. Cadastro do nome:
+     
+     O sistema solicita ao usuário o nome do produto:
+
+     produto["nome"] = ...
+
+     o nome é armazenado no dicionário  utilizando a chave "nome".
+     
+  6. Cadastro do preço:
+
+      O preço informado pelo usuário é convertido para o tipo float, permitindo o trabalho com valores monetários          que possuam casas decimais.
+
+     produto["preço"] = float(...)
+     
+  7. Cadastro do estoque:
+
+     A quantidade inicial disponível no estoque é recebida pelo sistema e convertida para o tipo int.
+
+     produto["estoque"] = int(...)
+     
+  8. 
 
 
   
