@@ -143,8 +143,124 @@
      recebe lista de produtos > gerar id > criar dicionário > receber nome > receber preço > receber estoque > retornar produto.
   
   5.2 FUNÇÃO listar_produtos()
-  
 
+  A função listar_produto() é responsável por percorrer a lista de produtos cadastrados e apresentar na tela as        principais informações de cada produto
+  A função recebe como parâmetro a lista de produtos que contém dicionários representando os produtos cadastrados.
+
+  ASSINATURA
+
+  def listar_produtos(produtos)
+
+  O parâmetro produtos representa a coleção de produtos armazenado pelo sistema.
+
+  ETAPAS DE EXECUÇÂO
+
+  1.PERCORRER A LISTA DE PRODUTOS
+  A função utiliza uma estrutura de repetição for para percorrer cada elemento da lista:
+      
+  for produto in produtos:
+
+  A cada repetição, a variável produto representa um dos dicionários armazenados na lista, por exemplo:
+
+  { "ID": 1, "nome": "cafe", "preço": 8.50, "estoque": 50 }}=
+  
+ 2. APRESENTAR UM SEPADADOR VISUAL
+
+Antes de exibir os dados, a função utiliza uma sequência de caracteres para separar visualmente os produtos:
+
+print("-" * 30)
+
+A expressão "-" * 30 produz uma sequência contendo 30 caracteres -.
+
+3. EXIBIR O IDENTIFICADOR DO PRODUTO
+
+O ID é obtido diretamente do dicionário:
+
+print(f"ID - {produto['ID']}")
+
+A chave "ID" permite acessar o identificador armazenado no produto.
+
+4. EXIBIR O NOME DO PRODUTO
+
+O nome é acessado pela chave "nome":
+
+print(f"produto.....{produto['nome']}")
+
+5. EXIVIR O PREÇO
+
+O preço é acessado pela chave "preço":
+
+print(f"preço.......{produto['preço']}")
+
+O valor armazenado no dicionário é utilizado diretamente na apresentação.
+
+6. EXIBIR A QUANTIDADE DE ITENS EM ESTOQUE
+
+A quantidade disponível é apresentada por meio da chave "estoque":
+
+print(f"estoque.....{produto['estoque']}")
+
+7. ENCERRAR A APRESENTAÇÃO DO PRODUTO
+
+Ao final de cada iteração, outro separador é apresentado:
+
+print("-" * 30)
+
+Depois disso, o for continua para o próximo produto da lista.
+
+Exemplo de execução
+
+Considerando a seguinte lista:
+
+produto = [{"ID": 1 , "nome": "cafe" , "preço": 8.50 , "estoque": 50} , {"ID": 2 , "nome": "capuccino" , "preço": 10.0 , "estoque": 50}]
+
+A função apresenta:
+
+------------------------------
+ID - 1
+produto.....cafe
+preço.......8.50
+estoque.....50
+------------------------------
+ID - 2
+produto.....capuccino
+preço.......10.0
+estoque.....50
+------------------------------
+Estrutura utilizada
+
+A função trabalha com duas estruturas principais:
+
+lista
+  ↓
+produtos
+  ↓
+dicionários
+  ↓
+ID, nome, preço e estoque
+
+A lista permite armazenar vários produtos, enquanto cada dicionário organiza as informações de um produto individual.
+
+Retorno
+
+A função não utiliza return. Sua responsabilidade é apresentar os produtos diretamente na interface de execução.
+
+Resumo do fluxo
+Receber lista de produtos
+          ↓
+Percorrer cada produto
+          ↓
+Acessar os dados do dicionário
+          ↓
+Exibir ID
+          ↓
+Exibir nome
+          ↓
+Exibir preço
+          ↓
+Exibir estoque
+          ↓
+Passar para o próximo produto
 
 
 
