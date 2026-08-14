@@ -1,4 +1,4 @@
-1 - DISCRIÇÃO DO PROJETO
+1 - DESCRIÇÃO DO PROJETO
 
   O projeto consiste no desenvolvimento de um sistema em Python destina a auxiliar o gerenciamento de uma cafeteria,
   simulando funcionalidades e atendimento e organização interna.
@@ -9,11 +9,11 @@
 2 - OBJETIVO DO PROJETO
 
   O projeto tem como objetivo desenvolver uma solução em Python que simule funcionalidades de gerenciamento e atendimento
-  de uma cafeteria, incluindo cadastro de produtos, clientes e pedidos. O desenvolvimento também busca aplicar na pratica 
+  de uma cafeteria, incluindo cadastro de produtos, clientes e pedidos. O desenvolvimento também busca aplicar na prática 
   os conceitos estudados na disciplina de Lógica- Algoritmos e Programação de Computadores utilizando estruturas como listas,
   dicionários e funções, além de uma interface simples para interação com o usuário.
 
- 3 - TECNOLOGIASS E RECURSOS UTILIZADOS
+ 3 - TECNOLOGIAS E RECURSOS UTILIZADOS
 
    * Python
    * PyCharm
@@ -45,7 +45,7 @@
   Contém as funções responsáveis pelas principais operações do sistema, como cadastro, linguagem e busca de produtos.
 
   arquivos.py
-  Modulo reservado para as operações relacionadas ao armazenamento de dados em arquivos.
+  Módulo reservado para as operações relacionadas ao armazenamento de dados em arquivos.
 
   interface.py
   Módulo destinado á organização da interface e da interação com o usuário.
@@ -56,19 +56,19 @@
   5 - ESTRUTURA DE DADOS
 
   Os produtos são armazenados em uma lista de dicionários
-  EXEMPLO: produto = [{"ID": 1, "nome': 'cafe', "preco": 8.50, "estoque": 50}, {"ID": 1, "nome': 'capuccino',
+  EXEMPLO: produto = [{"ID": 1, "nome': 'cafe', "preco": 8.50, "estoque": 50}, {"ID": 2, "nome': 'capuccino',
   "preco": 10.00, "estoque": 50}]
 
-  Os clientes também são representados por listas de dicionarios.
+  Os clientes são representados por dicionários e armazenados em uma lista.
 
-  5.1 - FUNÇÃO cadastrar_produtos()
+  5.1 - FUNÇÃO cadastrar_produto()
 
-  A função cadastra_produto() é responsável por coletar os dados de um novo produto e organizar essas informações em   um
+  A função cadastrar_produto() é responsável por coletar os dados de um novo produto e organizar essas informações em   um
   dicionário que posteriormente será armazenado em uma lista de produtos.
 
   ASSINATURA:
   
-  def cadastrar_produtos(produtos):
+  def cadastrar_produto(produtos):
 
   a função recebe como parâmetro a lista de produtos que contém os produtos já cadastrados, essa lista é usada para 
   determinar o identificador do novo produto.
@@ -95,7 +95,7 @@
 
      A quantidade de elementos existentes na lista obtida por meio da da função len(). em seguida, é acrescentado 1       para gerar o identificador do novo produto.
      
-  4. Armamento do ID:
+  4. Armazento do ID:
 
      O identificador calculado é armazenado no dicionário do produto:
 
@@ -123,7 +123,7 @@
 
      produto["estoque"] = int(...)
      
-  8. RETORNO DO PRODUTDO
+  8. RETORNO DO PRODUTO
 
      Depois que todos os dados são preenchidos, a função retorna o dicionário criado:
 
@@ -131,10 +131,10 @@
 
      Esse retorno permite que o programa principal receba o novo produto e adicione-o à lista:
 
-     novo_produto = cadastrar_produto(produto)
+     novo_produto = cadastrar_produto(produtos)
      produtos.append(novo_produto)
 
-     Estrutura resultate:
+     Estrutura resultante:
 
      {"ID": 1 , "nome": "cafe" , "preço": 8.50 , "estoque": 50}
 
@@ -142,14 +142,14 @@
 
      recebe lista de produtos > gerar id > criar dicionário > receber nome > receber preço > receber estoque > retornar produto.
   
-  5.2 FUNÇÃO listar_produtos()
+  5.2 FUNÇÃO listar_produto()
 
   A função listar_produto() é responsável por percorrer a lista de produtos cadastrados e apresentar na tela as        principais informações de cada produto
   A função recebe como parâmetro a lista de produtos que contém dicionários representando os produtos cadastrados.
 
   ASSINATURA
 
-  def listar_produtos(produtos)
+  def listar_produto(produtos)
 
   O parâmetro produtos representa a coleção de produtos armazenado pelo sistema.
 
@@ -164,7 +164,7 @@
 
   { "ID": 1, "nome": "cafe", "preço": 8.50, "estoque": 50 }}=
   
- 2. APRESENTAR UM SEPADADOR VISUAL
+ 2. APRESENTAR UM SEPARADOR VISUAL
 
 Antes de exibir os dados, a função utiliza uma sequência de caracteres para separar visualmente os produtos:
 
@@ -186,7 +186,7 @@ O nome é acessado pela chave "nome":
 
 print(f"produto.....{produto['nome']}")
 
-5. EXIVIR O PREÇO
+5. EXIBIR O PREÇO
 
 O preço é acessado pela chave "preço":
 
@@ -266,7 +266,7 @@ Quando o usuário escolhe pesquisar pelo identificar, o sistema solicita o ID de
 O valor informado é convertido para um tipo numérico, para que possa ser comparado com o valor armazenado no dicionário do produto.
 A busca utiliza uma expressão geradora em conjunto com next():
 
-resultado = next(({produto for produto in produtos if produto["ID"] == buscador}), False)
+resultado = next((produto for produto in produtos if produto["ID"] == buscador), False)
 
 A expressão: "produto for produto in produto" percorre os produtos armazenados na lista, a condição "produto["ID"] == buscador" verifica se o ID armazenado no produto corresponde ao ID informado pelo usuário.
 
@@ -283,7 +283,14 @@ Antes da comparação, o texto é normalizado por meio da função normalizar_te
 Essa normalização permite transformar entradas diferentes em uma forma equivalente para comparação.
 
 EXEMPLO: 
-  entradas > Café, café, CAFE, CAFÉ são cometidos para cafe.
+
+| Entrada | Resultado |
+| ------- | --------- |
+| `Café`  | `cafe`    |
+| `café`  | `cafe`    |
+| `CAFE`  | `cafe`    |
+| `CAFÉ`  | `cafe`    |
+
 
 5. FUNÇÃO normalizar_texto()
 
