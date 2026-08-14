@@ -123,11 +123,27 @@
 
      produto["estoque"] = int(...)
      
-  8. 
+  8. RETORNO DO PRODUTDO
 
+     Depois que todos os dados são preenchidos, a função retorna o dicionário criado:
 
+     return produto
+
+     Esse retorno permite que o programa principal receba o novo produto e adicione-o à lista:
+
+     novo_produto = cadastrar_produto(produto)
+     produtos.append(novo_produto)
+
+     Estrutura resultate:
+
+     {"ID": 1 , "nome": "cafe" , "preço": 8.50 , "estoque": 50}
+
+     RESUMO DO FLUXO
+
+     recebe lista de produtos > gerar id > criar dicionário > receber nome > receber preço > receber estoque > retornar produto.
   
-
+  5.2 FUNÇÃO listar_produtos()
+  
 
 
 
