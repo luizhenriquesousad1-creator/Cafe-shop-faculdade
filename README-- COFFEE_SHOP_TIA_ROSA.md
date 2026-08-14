@@ -155,8 +155,8 @@
 
   ETAPAS DE EXECUÇÂO
 
-    1.PERCORRER A LISTA DE PRODUTOS
-    A função utiliza uma estrutura de repetição for para percorrer cada elemento da lista:
+  1.PERCORRER A LISTA DE PRODUTOS
+  A função utiliza uma estrutura de repetição for para percorrer cada elemento da lista:
       
   for produto in produtos:
 
