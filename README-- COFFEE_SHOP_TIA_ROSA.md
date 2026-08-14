@@ -349,7 +349,7 @@ usuário informa tipo de busca > ID ou nome > ID > comparar> procurar na lista >
 usuário informa tipo de busca > ID ou nome > nome > normalizar > procurar na lista > encontrou > mostra resultado.
 usuário informa tipo de busca > ID ou nome > nome > normalizar > procurar na lista > não encontrou > informa que não existe resultado.
 
-> OBSERVAÇÃO
+OBSERVAÇÃO
    A função buscar_produto() é uma das principais funções de consulta do sistema e poderá ser utilizada posteriormente por outras operações, como edição ou remoção de produtos.
 8. 
 
