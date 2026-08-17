@@ -447,9 +447,15 @@ entrada: Café > processamento: Café > normalização unicode > remoção de ma
 
 RELAÇÃO COM A BUSCA DE PRODUTOS
 
-A função normalizar_texto() é utilizada pela função buscar_produtos() para padronizar o texto informado pelo usuário antes da padroniza
+A função normalizar_texto() é utilizada pela função buscar_produtos() para padronizar o texto informado pelo usuário antes da padroniza o texto informado pelo usuário antes da comparação com os nomes cadastrados.
 
+O fluxo pode ser representado como:
 
+Usuário informa o nome > normalizar_texto() >texto normalizado > comparação com produto > produto encontrado ou não encontrado
+
+RESUMO DO FLUXO
+
+receber texto > normalizar unicode >percorrer caracteres > ignora marcas de acentuação > adicionar caracteres válidos á lista > juntar os caracteres > converter para minúsculas > retorna texto normalizado.
 
 
 
