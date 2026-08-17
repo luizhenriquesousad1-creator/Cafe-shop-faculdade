@@ -358,8 +358,100 @@ usuário informa tipo de busca > ID ou nome > nome > normalizar > procurar na li
 
 OBSERVAÇÃO
    A função buscar_produto() é uma das principais funções de consulta do sistema e poderá ser utilizada posteriormente por outras operações, como edição ou remoção de produtos.
-8. 
+
+5.4 FUNÇÃO normalizar_texto()
+
+OBJETIVO
+
+A função normalizar_texto() foi criada para padronizar textos utilizados nas buscas realizadas pelo sistema.
+Seu principal objetivo é permitir que diferentes formas de escrita de um mesmo nome possa ser tratadas como equivalentes durante a comparação.
+
+EXEMPLO
+
+Café, café, CAFE, CAFÉ podem ser transformados em cafe
+
+dessa forma, diferenças de letras maiúsculas, minúsculas e acentuação não impedem a localização de um produto.
+
+ASSINATURA
+
+def normalizar_texto():
+
+A função recebe como parâmetro o texto que deverá ser normalizado e retorna uma nova string com a forma padronizada.
+
+1.CRIAÇÃO DA LISTA DE CARACTERES
+
+Durante o processamento, é utilizada uma lista para armazenar os caracteres que permanecerão no texto:
+
+texto_normalizado = []
+
+Essa lista permite que os caracteres sejam adicionados individualmente durante a análise do texto.
+
+2.NORMALIZAÇÃO UNICODE
+
+O módulo unicodedata é utilizado para decompor os caracteres:
+
+nfkd = unicodedata.normalize("NFKD", texto")
 
 
-  
+A normalização NFKD permite separar uma letra de sua marca de acentuação.
+
+EXEMPLO
+
+O caractere "é" pode ser separado internamente de forma semelhante  a:
+
+e + ´ 
+
+isso permite que a marca de acentuação seja identificada e removida.
+
+3.PERCORRER OS CARACTERES
+
+Após a normalização, a função percorre cada caractere utilizando uma estrutura de repetição for:
+
+for letra in nkfd:
+
+A variável letra representa um caractere do texto processado.
+
+4. IDENTIFICAÇÃO DAS MARCAS DE ACENTUAÇÃO
+
+A função unicodedata.combining() é utilizada para verificar se o caractere corresponde a uma marca de combinação como uma acentuação:
+
+if not unicodedata.combining(letra):
+
+Quando o caractere não é uma marca de combinação, ele é adicionado à lista:
+
+texto_normalizado.append(letra)
+
+5.REUNIR OS CARACTERES
+
+Após a análise de todos os caracteres, a lista é convertida novamente em uma string:
+
+texto_normalizado = "".join(texto_normalizado)
+
+O método join() reúne os caracteres da lista sem inseir espaços entre eles.
+
+EXEMPLO
+
+["c", "a", "f", "e"] é transformado em "cafe"
+
+6.CONVERSÃO PARA LETRAS MINÚSCULAS
+
+Por fim, o texto é convertido para letras minúsculas:
+
+retunr texto_normalizado.lower()
+
+Isso garante que diferentes formas decapitalização resultem no mesmo texto para fins de comparação
+
+EXEMPLO DE FUNCIONAMENTO
+
+entrada: Café > processamento: Café > normalização unicode > remoção de marca de acentuação > Cafe > .lower() > cafe > resultado: cafe
+
+RELAÇÃO COM A BUSCA DE PRODUTOS
+
+A função normalizar_texto() é utilizada pela função buscar_produtos() para padronizar o texto informado pelo usuário antes da padroniza
+
+
+
+
+
+
   
