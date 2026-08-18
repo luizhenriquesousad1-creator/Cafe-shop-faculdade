@@ -42,10 +42,11 @@ while True:
         remover_produto(produtos)
 
     elif opcao == 7:
+        vendas(produtos, clientes, registro_vendas)
+
+    elif opcao == 8:
         print("Salvando alterações")
         print("Finalizando...")
         break
 
-    elif opcao == 8:
-        vendas(produtos, clientes, registro_vendas)
-        print(registro_vendas)
+

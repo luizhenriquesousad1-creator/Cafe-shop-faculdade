@@ -26,8 +26,9 @@ def menu_principal():
     print("4 - Buscar produto")
     print("5 - Editar produto")
     print("6 - Remover produto")
-    print("7 - Sair")
-    print("8 - teste de venda")
+    print("7 - Venda")
+    print("8 - Sair")
+
     separador()
 
 def cadastro_produto(produtos):
@@ -129,6 +130,9 @@ def buscar_produto(produtos):
 
         else:
             return resultado
+    else:
+        print("Opção inválida!")
+        return False
 
 def editar_produto(produtos):
 
@@ -218,7 +222,15 @@ def remover_produto(produtos):
 def vendas(produtos, clientes, registro_vendas):
 
     cliente = buscar_cliente(clientes)
+
+    if cliente == False:
+        return
+
     produto = buscar_produto(produtos)
+
+    if produto == False:
+        return
+
     quantidade = int(input("Quantas produtos o cliente deseja:  "))
     venda = {}
 
