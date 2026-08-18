@@ -1,4 +1,5 @@
 import unicodedata
+from datetime import datetime
 
 def normalizar_texto(texto):
 
@@ -26,6 +27,7 @@ def menu_principal():
     print("5 - Editar produto")
     print("6 - Remover produto")
     print("7 - Sair")
+    print("8 - teste de venda")
     separador()
 
 def cadastro_produto(produtos):
@@ -42,17 +44,25 @@ def cadastro_produto(produtos):
 
     return produto
 
-def cadastrar_cliente():
+def cadastrar_cliente(clientes):
 
     print("Cadastro de Cliente")
 
-    clientes = {}
-    clientes["nome"] = str(input("Insira o nome do cliente: "))
-    clientes["CPF"] = str(input("Insira o CPF do cliente: "))
-    clientes["telefone"] = str(input("Insira o numero de telefone: "))
-    clientes["pontos"] = 0
+    cliente = {}
 
-    return clientes
+    if not clientes:
+        proximo_id = 1
+
+    else:
+        proximo_id = max(cliente["ID"] for cliente in clientes) + 1
+
+    cliente["ID"] = proximo_id
+    cliente["nome"] = str(input("Insira o nome do cliente: "))
+    cliente["CPF"] = str(input("Insira o CPF do cliente: "))
+    cliente["telefone"] = str(input("Insira o numero de telefone: "))
+    cliente["pontos"] = 0
+
+    return cliente
 
 def listar_produtos(produtos):
 
@@ -65,9 +75,21 @@ def listar_produtos(produtos):
         print(f"estoque:....{produto["estoque"]}")
         separador()
 
+def buscar_cliente(clientes):
+
+    buscador = int(input("Insira o ID do cliente: "))
+
+    resultado = next((cliente for cliente in clientes if cliente["ID"] == buscador), False)
+
+    if resultado == False:
+        print("Cliente não cadastrado!")
+        return False
+
+    else:
+        return resultado
 
 def buscar_produto(produtos):
-    print("buscar produto")
+
     print("Buscar produto por ID.....[1]")
     print("Buscar produto por nome...[2]")
 
@@ -84,12 +106,6 @@ def buscar_produto(produtos):
 
         else:
             return resultado
-            """separador()
-            print(f"ID ... {resultado['ID']}")
-            print(f"nome ... {resultado['nome']}")
-            print(f"preço ...{resultado['preço']}")
-            print(f"estoque....{resultado['estoque']}")
-            separador()"""
 
     elif opcao == 2:
 
@@ -113,13 +129,6 @@ def buscar_produto(produtos):
 
         else:
             return resultado
-            """"separador()
-            print(f"ID ... {resultado['ID']}")
-            print(f"nome ... {resultado['nome']}")
-            print(f"preço ...{resultado['preço']}")
-            print(f"estoque ....{resultado['estoque']}")
-            separador()"""
-
 
 def editar_produto(produtos):
 
@@ -205,6 +214,46 @@ def remover_produto(produtos):
 
             print("Sim.....[1]")
             print("Não.....[2]")"""
+
+def vendas(produtos, clientes, registro_vendas):
+
+    cliente = buscar_cliente(clientes)
+    produto = buscar_produto(produtos)
+    quantidade = int(input("Quantas produtos o cliente deseja:  "))
+    venda = {}
+
+    if quantidade > produto["estoque"]:
+
+        print("Estoque insuficiente para venda")
+
+    else:
+
+        produto["estoque"] = produto["estoque"] - quantidade
+
+        valor = produto["preço"] * quantidade
+
+        pontos = int(valor)
+        cliente["pontos"] += pontos
+
+        print(f"pontos ganhos {pontos}")
+        print(f"pontos acumulados {cliente["pontos"]}")
+
+        # Adiciona venda a lista
+        if not registro_vendas:
+            proximo_id = 1
+
+        else:
+            proximo_id = max(venda["ID"] for venda in registro_vendas) + 1
+
+        venda["Data"] = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        venda["ID"] = proximo_id
+        venda["Cliente"] = cliente["ID"]
+        venda["Produto"] = produto["ID"]
+        venda["preço"] = produto["preço"]
+        venda["quantidade"] = quantidade
+        venda["total"] = valor
+
+        registro_vendas.append(venda)
 
 
 def separador():
