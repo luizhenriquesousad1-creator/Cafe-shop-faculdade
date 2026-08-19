@@ -1,5 +1,7 @@
 import unicodedata
 from datetime import datetime
+from arquivos import salvar_produtos
+
 
 def normalizar_texto(texto):
 
@@ -27,8 +29,9 @@ def menu_principal():
     print("5 - Editar produto")
     print("6 - Remover produto")
     print("7 - Venda")
-    print("8 - Sair")
-
+    print("8 - Listar vendas")
+    print("9 - Relatórios")
+    print("0 - Sair")
     separador()
 
 def cadastro_produto(produtos):
@@ -36,9 +39,13 @@ def cadastro_produto(produtos):
     print("Cadastro de Produto")
 
     produto = {}
-    novo_id = len(produtos) + 1
 
-    produto["ID"] = novo_id
+    if not produtos:
+        proximo_id = 1
+    else:
+        proximo_id = max(produto["ID"] for produto in produtos) + 1
+
+    produto["ID"] = proximo_id
     produto["nome"] = normalizar_texto(str(input("Insira o nome do produto: ")))
     produto["preço"] = float(input("Insira o preço do produto: "))
     produto["estoque"] = int(input("Insira a quantidade do produto em estoque: "))
@@ -156,6 +163,7 @@ def editar_produto(produtos):
 
         novo_nome = str(input("Insira o nome do produto: "))
         produto["nome"] = normalizar_texto(novo_nome)
+        salvar_produtos(produtos)
         print("Nome do produto alterado com sucesso!")
 
         print(f"nome do prodouto {produto["nome"]}")
@@ -166,6 +174,7 @@ def editar_produto(produtos):
 
         novo_preco = float(input("Insira o novo preço do produto: "))
         produto["preço"] = novo_preco
+        salvar_produtos(produtos)
         print("Preço do produto alterado com sucesso!")
 
         print(f"nome do prodouto {produto["nome"]}")
@@ -176,6 +185,7 @@ def editar_produto(produtos):
 
         novo_estoque = int(input("Insira o novo estoque do produto: "))
         produto["estoque"] = novo_estoque
+        salvar_produtos(produtos)
         print("Estoque do produto alterado com sucesso!")
 
         print(f"nome do prodouto {produto["nome"]}")
@@ -205,19 +215,13 @@ def remover_produto(produtos):
         if verificacao == 1:
 
             produtos.remove(produto)
+            salvar_produtos(produtos)
             print("Produto removido com sucesso!")
 
 
         elif verificacao == 2:
             return
 
-        """else:
-            print("Opção invalida!")
-            print("Digite uma opção valida:")
-            verificacao = int(input("Tem certeza que deseja excluir o produto?"))
-
-            print("Sim.....[1]")
-            print("Não.....[2]")"""
 
 def vendas(produtos, clientes, registro_vendas):
 
@@ -267,6 +271,39 @@ def vendas(produtos, clientes, registro_vendas):
 
         registro_vendas.append(venda)
 
+def listar_vendas(registro_vendas):
+
+    for venda in registro_vendas:
+
+        separador()
+
+        print(f"ID da venda {venda['ID']}")
+        print(f"Data da venda {venda['Data']}")
+        print(f"Clinte {venda['Cliente']}")
+        print(f"Produto {venda['Produto']}")
+        print(f"Preço do produto: {venda["preço"]}")
+        print(f"Quantidade vendida {venda['quantidade']}")
+        print(f"Total da venda {venda['total']}")
+
+        separador()
+
+def relatorio_vendas(registro_vendas):
+
+    vendas = registro_vendas
+
+    if not vendas:
+        print("Nenhuma venda encontrada")
+        return False
+
+    quantidade_vendas = len(registro_vendas)
+    quantidade_total_vendas = sum(venda["quantidade"] for venda in registro_vendas)
+    faturamento_total = sum(venda["total"] for venda in registro_vendas)
+    ticket_medio = faturamento_total / quantidade_vendas
+
+    print(f"quantidade de vendas {quantidade_vendas}")
+    print(f"total de vendas {quantidade_total_vendas}")
+    print(f"faturamento total {faturamento_total}")
+    print(f"ticket medio {ticket_medio:.2f}")
 
 def separador():
     print("-"*30)
