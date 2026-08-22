@@ -1,6 +1,7 @@
 ID,nome,preço,estoque
-1,cafe,8.5,50
-2,capuccino,10.0,47
+1,cafe,8.5,55
+2,capuccino,10.0,46
 3,cha,10.0,45
 4,chocolate quente,16.0,69
 5,pingado,5.55,66
+6,mocha,15.5,50

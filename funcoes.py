@@ -222,7 +222,6 @@ def remover_produto(produtos):
         elif verificacao == 2:
             return
 
-
 def vendas(produtos, clientes, registro_vendas):
 
     cliente = buscar_cliente(clientes)
@@ -235,7 +234,7 @@ def vendas(produtos, clientes, registro_vendas):
     if produto == False:
         return
 
-    quantidade = int(input("Quantas produtos o cliente deseja:  "))
+    quantidade = int(input("Quantas unidade do produtos o cliente deseja:  "))
     venda = {}
 
     if quantidade > produto["estoque"]:
